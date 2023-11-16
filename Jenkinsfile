@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                dir('C:\application security\Docker\Project\my-app')
                 sh 'npm install' 
             }
         }
