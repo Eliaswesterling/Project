@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Change directory to the specific project within the Jenkins workspace
-                dir('my-app') {
+                dir('/var/jenkins_home/workspace/pipeline/my-app/package.json') {
                     // Run npm install or any other build steps
                     sh 'npm install'
                     // Add more build steps if needed
