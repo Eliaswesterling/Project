@@ -1,14 +1,20 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:20.9.0-alpine3.18' 
-            args '-p 3000:3000' 
-        }
-    }
+    agent any
+
     stages {
-        stage('Build') { 
+        stage('Checkout') {
             steps {
-                sh 'npm install' 
+                // Checkout code from Git repository
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Run npm install in the correct directory
+                dir('path/to/your/project') {
+                    sh 'npm install'
+                }
             }
         }
     }
