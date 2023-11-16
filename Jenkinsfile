@@ -1,22 +1,14 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Checkout code from Git repository
-                checkout scm
-            }
+    agent {
+        docker {
+            image 'node:20.9.0-alpine3.18' 
+            args '-p 3000:3000' 
         }
-
-        stage('Build') {
+    }
+    stages {
+        stage('Build') { 
             steps {
-                // Change directory to the specific project within the Jenkins workspace
-                        cd /var/jenkins_home/workspace/pipeline/your-project
-                    // Run npm install or any other build steps
-                    sh 'npm install'
-                    // Add more build steps if needed
-                }
+                sh 'npm install' 
             }
         }
     }
